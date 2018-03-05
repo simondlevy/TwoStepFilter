@@ -298,9 +298,10 @@ The measurement model is a mixture of accelerometer signal and sensor accelerati
 \[\bm{s}_{A,t}-c_a\prescript{S}{}{\bm{a}^+_{t-1}}=g\prescript{S}{}{\bm{Z_t}}\prescript{S}{}{\bm{a}^-_{\varepsilon,t}}+\bm{n}_A\tag{4}\]
 
 
-The following relation is applied in the above equation: g = g Z, a ε, t = a t
-- a t, a t = c a a t - 1. The superscripts - and + mean the a priori and the
-posteriori, respectively.
+The following relation is applied in the above equation: 
+$\prescript{S}{}{\bm{g}} = g\prescript{S}{}{\bm{Z}}$, 
+$\prescript{S}{}{\bm{a}^-_{\varepsilon,t}} = \prescript{S}{}{\bm{a}^-_t} - \prescript{S}{}{\bm{a}_t}$, 
+The superscripts $-$ and + mean the a priori and the posteriori, respectively.
 
 From the equations (3) and (4) we obtain the following KF equation:
 
