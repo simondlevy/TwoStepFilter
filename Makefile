@@ -1,4 +1,12 @@
-VIEWER = evince
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Darwin)
+  VIEWER = open
+endif
+
+ifeq ($(UNAME), Linux)
+  VIEWER = evince
+endif
 
 all: hsshbt.pdf
 
