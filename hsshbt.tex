@@ -1,49 +1,11 @@
 \documentclass[10pt,journal,compsoc]{IEEEtran}
 \usepackage{amsmath,bm,mathtools}
 \ifCLASSOPTIONcompsoc
-  % IEEE Computer Society needs nocompress option
-  % requires cite.sty v4.0 or later (November 2003)
   \usepackage[nocompress]{cite}
 \else
   % normal IEEE
   \usepackage{cite}
 \fi
-\ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  % \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
-\fi
-% *** MATH PACKAGES ***
-%
-%\usepackage[cmex10]{amsmath}
-% A popular package from the American Mathematical Society that provides
-% many useful and powerful commands for dealing with mathematics. If using
-% it, be sure to load this package with the cmex10 option to ensure that
-% only type 1 fonts will utilized at all point sizes. Without this option,
-% it is possible that some math symbols, particularly those within
-% footnotes, will be rendered in bitmap form which will result in a
-% document that can not be IEEE Xplore compliant!
-%
-% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
-% thus preventing page breaks from occurring within multiline equations. Use:
-%\interdisplaylinepenalty=2500
-% after loading amsmath to restore such page breaks as IEEEtran.cls normally
-% does. amsmath.sty is already installed on most LaTeX systems. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -65,61 +27,11 @@ Commons Attribution Non-Commercial License(http://creativecommons.org/
 licenses/bync/3.0) which permits unrestricted non-commercial use, distribution,
 and reproduction in any medium, provided the original work is properly cited.}}
 
-% note the % following the last \IEEEmembership and also \thanks - 
-% these prevent an unwanted space from occurring between the last author name
-% and the end of the author line. i.e., if you had this:
-% 
-% \author{....lastname \thanks{...} \thanks{...} }
-%                     ^------------^------------^----Do not want these spaces!
-%
-% a space would be appended to the last name and could cause every name on that
-% line to be shifted left slightly. This is one of those "LaTeX things". For
-% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
-% "AB" then you have to do: "\textbf{A}\textbf{B}"
-% \thanks is no different in this regard, so shield the last } of each \thanks
-% that ends a line with a % and do not let a space in before the next \thanks.
-% Spaces after \IEEEmembership other than the last one are OK (and needed) as
-% you are supposed to have spaces between the names. For what it is worth,
-% this is a minor point as most people would not even notice if the said evil
-% space somehow managed to creep in.
-
-
-
 % The paper headers
 \markboth{Journal of Sensor Science and Technology 
 Vol. 25, No. 3 (2016) pp. 202-207
 http://dx.doi.org/10.5369/JSST.2016.25.3.202
 SSN 1225-5475/eISSN 2093-7563}\%
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
-
-
-
-% The publisher's ID mark at the bottom of the page is less important with
-% Computer Society journal papers as those publications place the marks
-% outside of the main text columns and, therefore, unlike regular IEEE
-% journals, the available text space is not reduced by their presence.
-% If you want to put a publisher's ID mark on the page you can do it like
-% this:
-%\IEEEpubid{0000--0000/00\$00.00~\copyright~2014 IEEE}
-% or like this to get the Computer Society new two part style.
-%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2014 IEEE}%
-%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark (Computer Society jorunal
-% papers don't need this extra clearance.)
-
-
-
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
-
-
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
@@ -151,27 +63,7 @@ Vertical position, Vertical acceleration, Kalman filter, Complementary filter, I
 \maketitle
 
 
-% To allow for easy dual compilation without having to reenter the
-% abstract/keywords data, the \IEEEtitleabstractindextext text will
-% not be used in maketitle, but will appear (i.e., to be "transported")
-% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
-% or transmag modes are not selected <OR> if conference mode is selected 
-% - because all conference papers position the abstract like regular
-% papers do.
 \IEEEdisplaynontitleabstractindextext
-% \IEEEdisplaynontitleabstractindextext has no effect when using
-% compsoc or transmag under a non-conference mode.
-
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
 
@@ -305,13 +197,16 @@ The superscripts $-$ and + mean the a priori and the posteriori, respectively.
 
 From the equations (3) and (4) we obtain the following KF equation:
 
-\[\bm{x}_{1,t} = \Phi_{t-1}\bm{x}_{1,t-1} + \bm{w}_{t-1}\tag{5.a}\]
+\[\bm{x}_{1,t} = \bm{\Phi}_{t-1}\bm{x}_{1,t-1} + \bm{w}_{t-1}\tag{5.a}\]
 
 \[\bm{z}_t = \bm{H}_t \bm{x}_{1,t-1} + \bm{v}_t\tag{5.b}\]
 
 
-where the transition matrix Φ t - 1 is I - Δ ts G, t - 1; The process noise w t
-- 1 is Δ t (- Z t - 1) n G; The measurement vector z t is s A, t - c a a t - 1;
+\noindent where the transition matrix $\bm{\Phi}_{t-1}$ is 
+$I - \Delta t \bm{\tilde{s}}_{G,t-1}$; the process noise 
+$\bm{w}_{t-1}$ is 
+$\Delta t (- \prescript{S}{}{\bm{\tilde{Z}}_{t-1}}) \bm{n}_G$; 
+the measurement vector z t is s A, t - c a a t - 1;
 The observation matrix H t is gI; And the measurement noise v t is - a ε, t + n
 A. The covariance matrix, Q t - 1 (= E [w t - 1 - w t - 1]) and M t (= E [v t v
 t]) for the progressive noise and the measured noise are as follows.
