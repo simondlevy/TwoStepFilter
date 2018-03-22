@@ -202,31 +202,33 @@ From the equations (3) and (4) we obtain the following KF equation:
 \[\bm{z}_t = \bm{H}_t \bm{x}_{1,t-1} + \bm{v}_t\tag{5.b}\]
 
 
-\noindent where the transition matrix $\bm{\Phi}_{t-1}$ is 
-$I - \Delta t \bm{\tilde{s}}_{G,t-1}$; the process noise 
-$\bm{w}_{t-1}$ is 
-$\Delta t (- \prescript{S}{}{\bm{\tilde{Z}}_{t-1}}) \bm{n}_G$; 
-the measurement vector z t is s A, t - c a a t - 1;
-The observation matrix H t is gI; And the measurement noise v t is - a ε, t + n
-A. The covariance matrix, Q t - 1 (= E [w t - 1 - w t - 1]) and M t (= E [v t v
-t]) for the progressive noise and the measured noise are as follows.
+\noindent where the transition matrix $\bm{\Phi}_{t-1}$ is $I - \Delta t
+\bm{\tilde{s}}_{G,t-1}$; the process noise $\bm{w}_{t-1}$ is $\Delta t (-
+\prescript{S}{}{\bm{\tilde{Z}}_{t-1}}) \bm{n}_G$; 
+the measurement vector $\bm{z}_t$ is $\bm{s}_{A, t} - c_a \prescript{S}{}{\bm{a}}^+_{t-1}$;
+The observation matrix $\bm{H}_t$ is $g\bm{I$}; and the measurement noise $\bm{v}_t$ is 
+$-\prescript{S}{}{\bm{a}}_{\varepsilon,t} + \bm{n}_A$. The covariance matrix, 
+$\bm{Q}_{t-1}$ (= $E [\bm{w}_{t-1} - \bm{w}^T{t-1}]$) and $\bm{M}_t$ (= $E [\bm{v}_t \bm{v}^T_t]$) 
+for the progressive noise and the measured noise are as follows:
 
-(6.a)
+\[\bm{Q}_{t-1} = \Delta t^{2}\prescript{S}{}{\tilde{\bm{Z}}_{t-1}\Sigma_G}\prescript{S}{}{\tilde{\bm{Z}}_{t-1}}\tag{6.a}\]
 
-(6.b)
+\[\bm{M}_t = \Sigma_{acc} + \Sigma_A\tag{6.b}\]
 
-where E is the expectation operator, the covariance matrix Σ G for gyro
-measurement noise is σ GI 3, the covariance matrix Σ A for accelerometer
-measurement noise is set to σ AI 3, and σ G and σ A are noise standard
-deviations. The covariance matrix Σ acc of the acceleration model error defined
-by E ((ε, t) (a ε, t)) is set to 3 caat - 1 I.
+\noindent where $E$ is the expectation operator, the covariance matrix $\Sigma_G$ for gyro
+measurement noise is $\sigma^2_G I_3$; the covariance matrix $\Sigma_A$ for accelerometer
+measurement noise is set to $\sigma_A \textbf{I}_3$; and $\sigma_G$ and $\sigma_A$ are noise standard
+deviations. The covariance matrix $\Sigma_{acc}$ of the acceleration model error defined
+by $E((\prescript{S}{}{\bm{a}}^+_{\varepsilon,t})(\prescript{S}{}{\bm{a}}^+_{\varepsilon,t})^T)$ 
+is set to $3^{-1}c^2_a||\prescript{S}{}{\bm{a}}^+_{t-1}||\textbf{I}$.
 
-Once Z is obtained, the external acceleration a from the viewpoint of the
-sensor coordinate system is obtained as s A - g Z, and finally the Z-direction
-acceleration a z from the viewpoint of the inertial coordinate system is
-obtained by the following equation.
+Once $\prescript{S}{}{\bm{Z}}$ is obtained, the external acceleration
+$\prescript{S}{}{\bm{a}}$ from the viewpoint of the sensor coordinate system is
+obtained as  $\bm{s}_A-g\prescript{S}{}{\bm{Z}}$, and finally the $\bm{Z}$-direction
+acceleration $\prescript{I}{}{a}_z$ from the viewpoint of the inertial coordinate system is
+obtained by the following equation:
 
-(7)
+\[a_z(=\prescript{I}{}{a}_z)= \prescript{S}{}{\bm{a}}^T \prescript{S}{}{\bm{Z}}\tag{7}\]
 
 
 \begin{figure}[!t]
@@ -237,7 +239,6 @@ obtained by the following equation.
 \end{figure}
 
 \subsection{Complementary filter for vertical displacement estimation}
-
 
 In the second step, a complementary filter, the vertical displacement h z (= h
 z) and the vertical velocity v z (= v z) are estimated using the vertical
