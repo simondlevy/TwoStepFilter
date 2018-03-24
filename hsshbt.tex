@@ -66,10 +66,7 @@ Vertical position, Vertical acceleration, Kalman filter, Complementary filter, I
 \IEEEdisplaynontitleabstractindextext
 \IEEEpeerreviewmaketitle
 
-
-
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
-
 
 \IEEEPARstart{A}{ccurate} vertical position estimation for moving objects or humans is required
 in various fields. For example, in the control of an unmanned aerial vehicle
@@ -159,10 +156,11 @@ follows:
 \[\bm{s}_A = \prescript{S}{}{\bm{g}}+\prescript{S}{}{\bm{a}}+\bm{n}_G\tag{1.b}\]
 
 
-\noindent where $\bm{\omega}$ is the angular velocity, $\bm{a}$ is the sensor acceleration and $\bm{n}$ is the
-measurement noise. The superscript $S$ also means that the vector is represented
-in the sensor coordinate system. In equation (1.b), the sensor acceleration is
-modeled as a first-order Markov chain process:
+\noindent where $\bm{\omega}$ is the angular velocity, $\bm{a}$ is the sensor
+acceleration and $\bm{n}$ is the measurement noise. The superscript $S$ also
+means that the vector is represented in the sensor coordinate system. In
+equation (1.b), the sensor acceleration is modeled as a first-order Markov
+chain process:
 
 \[\prescript{S}{}{\bm{a}_t} = c_a\prescript{S}{}{\bm{a}_{t-1}}+\bm{\varepsilon}_{a,t}\tag{2}\]
 
@@ -240,15 +238,36 @@ obtained by the following equation:
 
 \subsection{Complementary filter for vertical displacement estimation}
 
-In the second step, a complementary filter, the vertical displacement h z (= h
-z) and the vertical velocity v z (= v z) are estimated using the vertical
-acceleration transmitted through the first Kalman filter and the barometric
+In the second step, a complementary filter, the vertical displacement 
+$h_z (= \prescript{I}{}{h}_z)$ and the vertical velocity $v_z (= \prescript{I}{}{v}_z)$ 
+are estimated using the vertical acceleration transmitted through the first Kalman filter and the barometric
 signal.
 
 The barometer pressure P can be converted to the vertical displacement h z by
 the following equation [12].
 
-(8)
+\[h_z = 44330(1-(P/P_0)^{0.19})-h_{init}\tag{8}\]
+
+\noindent where the unit of $h_z$ is m(eters) and $P_0$ is the atmospheric pressure at sea level
+101,352 Pa(scals), and $h_{init}$ is the altitude of the starting point of
+observation. In other words, $h_z$ in this paper is the variation of the vertical
+displacement from the observation starting point.  Also, in this paper, based
+on the highly transformed barometric pressure signal, the signal of the
+barometer ($B$) is modeled as
+
+\[s_B = h_z + n_B\tag{9}\]
+
+The state vector $\bm{x}_2$ in the second filter, complementary filter, is:
+
+\[\bm{x}_2 = [h_z v_z]^T\tag{10}\]
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{fig2}
+\caption{GY-87 IMU-Barometer and Arduino board system.}
+\label{fig2}
+\end{figure}
+
 
 \section{Conclusion}
 The conclusion goes here.
