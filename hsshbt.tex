@@ -277,15 +277,37 @@ The state vector $\bm{x}_2$ in the second filter, complementary filter, is:
 \begin{tabular}{llll}
 \\ \toprule
 & Accelerometer & Gyroscope & Barometer\\ \midrule
+
 Model 
 & \multicolumn{1}{ p{1.5cm} }{\centering Invensense \\ MPU-6050} 
 & \multicolumn{1}{ p{1.5cm} }{\centering Invensense \\ MPU-6050} 
 & \multicolumn{1}{ p{1.5cm} }{\centering Bosch \\ BMP 180} \\
 \hline\\
+
 Full-Scale Range 
 & $\pm 2 \sim 16 g$ 
 & \multicolumn{1}{ p{1.5cm} }{\centering $\pm 250 \sim$ \\ 2000 deg/s} 
 & \multicolumn{1}{ p{1.5cm} }{\centering $\pm 300 \sim$ \\ 1100 hPa} \\
+\hline\\
+
+Sensitivity
+& \multicolumn{1}{ p{1.5cm} }{\centering $0.000061 \sim$ \\ 0.0049 g} 
+& \multicolumn{1}{ p{1.5cm} }{\centering $0.0076 \sim$ \\ 0.061 deg/s} 
+& \multicolumn{1}{ p{1.5cm} }{\centering 0.0015 hPa} \\
+\hline\\
+
+\multicolumn{1}{ p{2cm} }{\centering Max. Sampling\\ Rate} 
+& 1000 Hz
+& 8000 Hz
+& 128 Hz \\
+\hline\\
+
+Digital Resolution
+& 16 bit
+& 16 bit
+& 19 bit\\
+\hline
+
 \end{tabular}
 \end{table}  
 
