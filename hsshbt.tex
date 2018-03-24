@@ -1,5 +1,6 @@
 \documentclass[10pt,journal,compsoc]{IEEEtran}
 \usepackage{amsmath,bm,mathtools}
+\usepackage{tabularx,multirow,booktabs,blindtext}
 \ifCLASSOPTIONcompsoc
   \usepackage[nocompress]{cite}
 \else
@@ -268,6 +269,23 @@ The state vector $\bm{x}_2$ in the second filter, complementary filter, is:
 \label{fig2}
 \end{figure}
 
+\begin{table}[tp]
+\caption{Specification of GYU-87 IMU-Barometer system.}
+\vspace*{-5mm}
+\label{table:levels}
+\centering
+\begin{tabular}{llll}
+\\ \toprule
+& Accelerometer & Gyroscope & Barometer\\ \midrule
+Model 
+& \multicolumn{1}{ p{1.5cm} }{\centering Invensense \\ MPU-6050} 
+& \multicolumn{1}{ p{1.5cm} }{\centering Invensense \\ MPU-6050} 
+& \multicolumn{1}{ p{1.5cm} }{\centering Bosch \\ BMP 180} \\
+%& \begin{tabular}{l}\\\end{tabular} \\
+\hline
+\bottomrule
+\end{tabular}
+\end{table}  
 
 \section{Conclusion}
 The conclusion goes here.
@@ -284,10 +302,10 @@ Appendix two text goes here.
 
 % use section* for acknowledgment
 \ifCLASSOPTIONcompsoc
-  % The Computer Society usually uses the plural form
+% The Computer Society usually uses the plural form
   \section*{Acknowledgments}
 \else
-  % regular IEEE prefers the singular form
+% regular IEEE prefers the singular form
   \section*{Acknowledgment}
 \fi
 
@@ -305,9 +323,9 @@ The authors would like to thank...
 
 \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+    \bibitem{IEEEhowto:kopka}
+        H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+        0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
 \end{thebibliography}
 
