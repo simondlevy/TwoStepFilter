@@ -283,6 +283,17 @@ $\bm{K}_c$ is as follows:
 respectively.   For references, this complementary filter has low-pass filter
 characteristics of time constant $\tau = \sqrt{\sigma_B/\sigma_{acc}}$.
 
+Prior to the above, the zero-velocity update (ZUPT) was applied.  Based
+on the integration of noise, this is a technique to limit the drift error. When the
+zero speed is detected (as follows), the speed is set to zero in preference to
+the complementary filter integral (11):
+
+\[v_{z,t} = \begin{cases} 0, if (|a_{z,\tau}|<0.1m/s^2 \forall_\tau\in[t-n\Delta t, t]) \\ Eq. (11)~otherwise \end{cases} \tag{14}\]
+
+\noindent where $n$ is set to 12.
+
+The overall configuration of the proposed two-stage Kalman / complementary filter is shown in Fig. 1.
+
 \begin{figure}[!t]
 \centering
 \includegraphics[width=2.5in]{fig2}
