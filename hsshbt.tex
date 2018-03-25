@@ -264,11 +264,18 @@ The state vector $\bm{x}_2$ in the second filter, complementary filter, is [11]:
 
 Applying the introduced complementary filter is as follows:
 
-\[\bm{x}_{2,t} = 
+\begin{equation}
+\resizebox{.42 \textwidth}{!} 
+{
+$ 
+\bm{x}_{2,t} = 
 \begin{bmatrix} 1 & \Delta t \\ 0 & 1 \end{bmatrix} \bm{x}_{2,t-1} +
 \begin{bmatrix} 1 & \Delta t / 2 \\ 0 & 1 \end{bmatrix} \bm{K}_c\Delta t \times \varepsilon_{h,t-1} +
 \begin{bmatrix} \Delta t / 2 \\ 1 \end{bmatrix} \Delta v_{z,t-1}
-\tag{11}\]
+$
+}
+\tag{11}
+\end{equation}
 
 Here, $\varepsilon_h$ is the difference between the barometric signal and the estimated value:
 
@@ -295,6 +302,12 @@ the complementary filter integral (11):
 The overall configuration of the proposed two-stage Kalman / complementary filter is shown in Fig. 1.
 
 \subsection{Verification experiment}
+
+A GY-87 modular system was used for verification experiments. The GY-87
+consists of a 6-axis InvenSense MPU-6050 IMU (including accelerometer and
+gyro), a 3-axis Honeywell HMC5883L geomagnetic sensor, and a Bosch BMP180
+barometer, of which IMU and barometer were used for this experiment. Refer to
+Table 1 for details.
 
 \begin{figure}[!t]
 \centering
