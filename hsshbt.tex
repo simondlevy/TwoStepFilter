@@ -310,11 +310,16 @@ In addition to the proposed two-stage Kalman / complementary filter method,
 the following cases were compared and analyzed:
 
 \begin{itemize}
-    \item The method of obtaining vertical acceleration: 
-        \begin{enumerate}
-            \item $a_{z,KF}$: The proposed method described in Section 2.1 using both accelerometer and gyroscope
-        \end{enumerate}
+\item The method of obtaining vertical acceleration: 
+\begin{enumerate}
+\item $a_{z,KF}$: the proposed method described in Section 2.1 using both accelerometer and gyroscope,
+\item $a_{z,OPT}$: a method of obtaining vertical acceleration using a very accurate attitude obtained from the 
+  Flex 13 camera system instead of the inertial sensor,
+\item $a_{z,app}$: Approximate method using only accelerometer [13]. That is, $a_{z,app} = ||s_A|| - g$.
+\end{enumerate}
 \end{itemize}
+
+% =========================================================================================================
 
 \begin{figure}[!t]
 \centering
