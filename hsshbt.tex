@@ -317,6 +317,23 @@ the following cases were compared and analyzed:
   Flex 13 camera system instead of the inertial sensor,
 \item $a_{z,app}$: Approximate method using only accelerometer [13]. That is, $a_{z,app} = ||s_A|| - g$.
 \end{enumerate}
+\item How to find vertical displacement:
+\begin{enumerate}
+\item Using the complementary filter described in Section 2.2,
+\item $[2]$ and [7] using Kalman filter.
+\end{enumerate}
+\end{itemize}
+
+Five experiments were conducted as follows. Tests A to C are shown in Fig 3. As
+shown in Fig. 3, these were performed in the indoor gymnasium, elevated above the
+starting height by more than 3m. The optical marker was used only for the
+reference value corresponding to the vertical displacement (That is, $a_{z,OPT}$
+are not obtained through the reference value of the sensor attitude.) On the
+other hand, Test D ~ E was lowered to within 1.5 m from the starting height.
+To confirm the influence of $a_{z,KF}$ and $a_{z,OPT}$ on the vertical displacement
+estimation, three additional markers were attached.  The test movements were as follows:
+\begin{itemize}
+    \item
 \end{itemize}
 
 % =========================================================================================================
