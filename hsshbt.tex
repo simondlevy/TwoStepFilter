@@ -304,9 +304,17 @@ Table 1 for details.  The setup of the GY-87 is shown in Fig. 2 with Arduino
 UNO R3 microcontroller (Arduino, Italy) and USB serial communication with the
 PC and input to the filter.  The OptiTrack Flex13 optical motion capture system
 (NaturalPoint, Inc. USA) of Figure 3 was used as a ground-truth reference to obtain
-root mean square error (RMSE).
+root mean square error (RMSE).  
 
+In addition to the proposed two-stage Kalman / complementary filter method,
+the following cases were compared and analyzed:
 
+\begin{itemize}
+    \item The method of obtaining vertical acceleration: 
+        \begin{enumerate}
+            \item $a_{z,KF}$: The proposed method described in Section 2.1 using both accelerometer and gyroscope
+        \end{enumerate}
+\end{itemize}
 
 \begin{figure}[!t]
 \centering
