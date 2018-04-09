@@ -337,7 +337,7 @@ estimation, three additional markers were attached.  The test movements were as 
          Waited for about 10 seconds before descending to the starting height again.
          XXX However, when the sensor is moved up or down and the sensor attitude changes by more than 
          45$^\circ$ XXX.  This experiment confirms the influence of vertical
-         acceleration $a_{z,KF}$ and $a_z$, app difference in attitude change in
+         acceleration $a_{z,KF}$ and $a_{z,app}$ difference in attitude change in
          vertical displacement estimation.
     \item \textbf{Test B-C} Repeatedly ascending and descending by up to about 3m. Compared to Test B, 
         Test C had faster and more frequent ups and downs. This experiment
@@ -346,6 +346,10 @@ estimation, three additional markers were attached.  The test movements were as 
     \item \textbf{Test D} Cascaded steps up and down, then stop.
     \item \textbf{Test E} Observe the transition of the barometer signal at small altitude changes.
 \end{itemize}
+
+\section{Results}
+
+Table 2 shows the RMSE for each case, and Fig. 4 shows the result of applying CF in the second step.
 
 % =========================================================================================================
 
@@ -369,7 +373,6 @@ estimation, three additional markers were attached.  The test movements were as 
 \caption{Test setup with the Fex 13 optical motion capture system in an indoor gym.}
 \label{fig3}
 \end{figure}
-
 
 \begin{table}[tp]
 \caption{Specification of GYU-87 IMU-Barometer system.}
@@ -412,6 +415,27 @@ Digital Resolution
 
 \end{tabular}
 \end{table}  
+
+\begin{table}[tp]
+    \caption{RMSE (root mean squared error) of raw barometer signal and estimations of each case
+    (unit: cm)}
+\vspace*{-5mm}
+\label{table:rmse}
+\centering
+\begin{tabular}{llllll}
+\\ \toprule
+\textbf{Test} & $S_B$ & \textbf{Filter} & $a_{z,OPT}$ & $a_{z,KF}$ & $a_{z,app}$ \\ \midrule
+Test A & 41.7 & CF & N/A & 19.9 & 86.8\\ \hline &  & KF & N/A & 19.8 & 86.9\\ \hline
+Test B & 42.0 & CF & N/A & 13.9 & 37.4\\ \hline &  & KF & N/A & 13.8 & 37.4\\ \hline
+Test C & 50.4 & CF & N/A & 26.2 & 32.4\\ \hline &  & KF & N/A & 26.2 & 32.4\\ \hline
+Test D & 40.8 & CF & 16.8 & 18.5 & 18.2 \\ \hline &  & KF & 16.3 & 18.1 & 18.6\\ \hline
+Test E & 42.2 & CF & 18.7 & 19.9 & 32.1 \\ \hline &  & KF & 18.7 & 19.8 & 32.0\\ \hline
+Average & 43.4 & & 17.8 & 19.7 & 41.4 \\ \hline &  & & 17.5 & 19.5 & 41.5\\ \hline
+\\
+\\
+\end{tabular}
+\end{table}  
+
 
 \begin{thebibliography}{1}
 
