@@ -354,6 +354,22 @@ Table 2 shows the RMSE for each case, and Fig. 4 shows the result of applying CF
 motion in which the change of attitude was not large as in Test B or Test C,
 since $a_{z,app}$ maintains some accuracy, the vertical displacement estimate
 was also obtained more accurately than with the barometer by itself ($s_B$).
+However, as in Test A, when the sensor posture changed significantly and the
+vertical motion was performed, the estimation accuracy was estimated to be even
+larger than the RMSE of $s_B$. The maximum error was 26.2 cm in Test C, and
+even less than 30 cm of accuracy was achieved in a displacement test of 3 m or
+more. In Test C, it seems that the influence of the large error of the
+barometer signal is reflected in the estimated value.
+
+(Test D - E) Overall accuracy was highest for $a_{z,OPT}$, which estimated
+vertical displacement based on very accurate vertical acceleration. However,
+the proposed $a_{z,KF}$ method also showed very high accuracy ($a_{z,OPT}$ is
+comparable to the analytical comparison, which can not be obtained with the
+IMU-barometer system), averaging 1.4 cm averaged over $a_{z,OPT}$ method.
+The $a_{z,app}$ method showed very different results depending on the degree of
+sensor posture maintained.  For example, as in Test D, the RMSE was less than 20
+cm in accuracy for a motion that included a stationary state with no change in
+posture.
 
 % =========================================================================================================
 
