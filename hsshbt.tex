@@ -371,6 +371,17 @@ sensor posture maintained.  For example, as in Test D, the RMSE was less than 20
 cm in accuracy for a motion that included a stationary state with no change in
 posture.
 
+The barometer signal functions to prevent drift errors and ultimately
+determines the direction of the estimated value. In other words, It is
+inevitable that the estimated value is also affected if the error increases to
+the abnormal barometer signal which depends on the barometer signal to prevent
+drift error.  For example, if you look at the portion after 35 seconds in Test
+E, the sensor stopped at the 0 m initial position, but the barometer signal
+continued to drop, and you can see how the estimated value tracks it. Therefore, in
+order to improve the estimation performance, it is necessary to improve the
+performance of the barometer itself.
+
+
 % =========================================================================================================
 
 \begin{figure}[!t]
