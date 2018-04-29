@@ -381,6 +381,14 @@ continued to drop, and you can see how the estimated value tracks it. Therefore,
 order to improve the estimation performance, it is necessary to improve the
 performance of the barometer itself.
 
+In conclusion, there was no performance difference between CF and KF in all
+five tests.  However, considering the amount of calculation (CF / KF
+calculation ratio = 12.5\%), it can be concluded that CF is advantageous
+overall. The proposed method has an average RMSE of 19.7 cm, which is 55\%
+better than the RMSE 43.4 cm of the barometer signal itself.  In [2], vertical
+acceleration estimation with Kalman filter and vertical displacement estimation
+with Kalman filter (ie, two-stage Kalman / Kalman filter) and average RMSE 27.4
+cm was obtained.
 
 % =========================================================================================================
 
