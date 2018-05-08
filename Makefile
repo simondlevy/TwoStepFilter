@@ -1,12 +1,11 @@
 UNAME := $(shell uname)
 
-ifeq ($(UNAME), Darwin)
-  VIEWER = open
-endif
-
-ifeq ($(UNAME), Linux)
+ifeq ($(OS),Windows_NT)
+  VIEWER = '/c/Program\ Files\ \(x86\)/Adobe/Acrobat\ Reader\ DC/Reader/AcroRd32'
+else
   VIEWER = evince
 endif
+
 
 all: hsshbt.pdf
 
