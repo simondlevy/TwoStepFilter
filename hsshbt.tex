@@ -26,7 +26,8 @@ Corresponding author: jklee@hknu.ac.kr}
 This is an Open Access article distributed under the terms of the Creative
 Commons Attribution Non-Commercial License(http://creativecommons.org/
 licenses/bync/3.0) which permits unrestricted non-commercial use, distribution,
-and reproduction in any medium, provided the original work is properly cited.}}
+and reproduction in any medium, provided the original work is properly cited.}
+\small \\Translated by Simon D. Levy (simon.d.levy@gmail.com)}\normalsize
 
 % The paper headers
 \markboth{Journal of Sensor Science and Technology 
@@ -140,6 +141,7 @@ and Kalman filter selection in the second stage. In this paper, we propose an
 optimal vertical displacement estimation filter that combines the accuracy of
 estimation and calculation efficiency.
 
+
 \section{Estimation algorithm and verification experiment}
 
 \subsection{Kalman filter for vertical acceleration estimation via posture estimation}
@@ -177,6 +179,14 @@ a three-dimensional attitude matrix. First, the process model that updates the
 state variable $x_1 (= \prescript{S}{}{\bm{Z}})$ over time is expressed as
 follows from the strapdown integration associated with the angular velocity
 measurement of the gyroscope:
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{fig1}
+    \caption{Flowchart of the proposed two-step Kalman/complementary filter.}
+\label{fig1}
+\end{figure}
+
 
 \[\bm{x}_{1,t}=\prescript{S}{}{\bm{Z}_t}=
 (\bm{I}-\Delta t\bm{\tilde{s}}_{G,t-1})\prescript{S}{}{\bm{Z}_{t-1}}+\Delta t(-\prescript{\tilde{S}}{}{\bm{Z}_{t-1}})\bm{n}_G\tag{3}\]
@@ -283,6 +293,7 @@ $\bm{K}_c$ is as follows:
 respectively.   For references, this complementary filter has low-pass filter
 characteristics of time constant $\tau = \sqrt{\sigma_B/\sigma_{acc}}$.
 
+
 Prior to the above, the zero-velocity update (ZUPT) was applied.  Based
 on the integration of noise, this is a technique to limit the drift error. When the
 zero speed is detected (as follows), the speed is set to zero in preference to
@@ -293,6 +304,14 @@ the complementary filter integral (11):
 \noindent where $n$ is set to 12.
 
 The overall configuration of the proposed two-stage Kalman / complementary filter is shown in Fig. 1.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{fig2}
+\caption{GY-87 IMU-Barometer and Arduino board system.}
+\label{fig2}
+\end{figure}
+
 
 \subsection{Verification experiment}
 
@@ -346,6 +365,22 @@ estimation, three additional markers were attached.  The test movements were as 
     \item \textbf{Test D} Cascaded steps up and down, then stop.
     \item \textbf{Test E} Observe the transition of the barometer signal at small altitude changes.
 \end{itemize}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{fig3}
+\caption{Test setup with the Fex 13 optical motion capture system in an indoor gym.}
+\label{fig3}
+\end{figure}
+
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{fig4}
+\caption{Comparison of vertical position estimations.}
+\label{fig4}
+\end{figure}
+
 
 \section{Results}
 
@@ -425,36 +460,6 @@ This paper was carried out with support from the Small and Medium Business
 Administration's research village project (C0301478) and the Korea Research
 Foundation (NRF-2015R1C1A1A02036373) of the Institute for Future Creation
 Sciences.
-
-% =========================================================================================================
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=2.5in]{fig1}
-    \caption{Flowchart of the proposed two-step Kalman/complementary filter.}
-\label{fig1}
-\end{figure}
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=2.5in]{fig2}
-\caption{GY-87 IMU-Barometer and Arduino board system.}
-\label{fig2}
-\end{figure}
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=2.5in]{fig3}
-\caption{Test setup with the Fex 13 optical motion capture system in an indoor gym.}
-\label{fig3}
-\end{figure}
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=2.5in]{fig4}
-\caption{Comparison of vertical position estimations.}
-\label{fig4}
-\end{figure}
 
 \begin{table}[tp]
 \caption{Specification of GYU-87 IMU-Barometer system.}
