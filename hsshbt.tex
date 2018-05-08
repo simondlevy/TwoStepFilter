@@ -1,8 +1,9 @@
 \documentclass[10pt,journal,compsoc]{IEEEtran}
 \usepackage{amsmath,bm,mathtools}
 \usepackage{tabularx,multirow,booktabs,blindtext}
+\usepackage[T1]{fontenc}
 \ifCLASSOPTIONcompsoc
-  \usepackage[nocompress]{cite}
+\usepackage[nocompress]{cite}
 \else
   % normal IEEE
   \usepackage{cite}
@@ -390,6 +391,41 @@ acceleration estimation with Kalman filter and vertical displacement estimation
 with Kalman filter (ie, two-stage Kalman / Kalman filter) and average RMSE 27.4
 cm was obtained.
 
+\section{Review and Conclusion}
+
+In this paper, a two-stage Kalman / complementary filter for vertical
+displacement estimation based on IMU-barometer was proposed. The Kalman filter
+(KF) for estimating the vertical acceleration in the first stage estimates the
+vertical acceleration via the tilt posture using the 6-axis IMU signal. In the
+second-stage complementary filter (CF), vertical displacement and vertical
+velocity are estimated using vertical acceleration and barometric signal
+transmitted through the first Kalman filter. The following conclusions are
+drawn from various experiments.
+
+1. In the vertical displacement estimation filter using the vertical
+acceleration estimate and the barometric signal, there was almost no difference
+in accuracy between KF and CF (absolute difference value average 0.15 cm).
+However, considering the calculation time, the CF method is much faster than KF
+(8 times), so we conclude that the CF adopted by this paper is better.
+
+2. Unless there is little change in attitude, approximated vertical
+acceleration estimation using only an accelerometer is inadequate for use in
+estimating vertical displacement (despite the ease of sensor configuration and
+method).
+
+3. In the vertical acceleration estimation based on the IMU-barometric fusion
+sensor, the performance of the barometer has a great influence on the
+estimation accuracy, and it seems that there is a limit to improving the accuracy
+through the IMU.  However, in comparison with the barometer signal error of
+43.4cm average RMSE, the average RMSE error of the proposed method was 19.7cm.
+
+\section*{Acknowledgments}
+
+This paper was carried out with support from the Small and Medium Business
+Administration's research village project (C0301478) and the Korea Research
+Foundation (NRF-2015R1C1A1A02036373) of the Institute for Future Creation
+Sciences.
+
 % =========================================================================================================
 
 \begin{figure}[!t]
@@ -484,14 +520,87 @@ Average & 43.4 & & 17.8 & 19.7 & 41.4 \\ \hline &  & & 17.5 & 19.5 & 41.5\\ \hli
 \end{tabular}
 \end{table}  
 
-
 \begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+    \bibitem{Gasior}
+        P. G\k{a}sior, S. Gardecki, J. Go\'{s}li\'{n}ski, and W. Giernacki,
+        ``Estimation of altitude and vertical velocity for multirotor
+        aerial vehicle using Kalman filter,'' in \emph{Recent Advances in
+        Automation, Robotics and Measuring Techniques}, Vol. 267,
+        R. Szewczyk, C. Zieli\'{n}ski, and M. Kaliczy\'{n}ska, Eds. Hei-
+        delberg, Germany: Springer International Publishing, 2014,
+        pp. 377-385.
 
-\end{thebibliography}
+    \bibitem{Zihajehzadeh}
+        S. Zihajehzadeh, T. J. Lee, J. K. Lee, R. Hoskinson, and E.
+        J. Park, ``Integration of MEMS inertial and pressure sensors
+        for vertical trajectory determination,'' \emph{IEEE Trans. Instrum.
+        Meas.}, Vol. 64, No. 3, pp. 804-814, 2015.
+
+    \bibitem{Svbavensky}
+        O. \v{S}v\'{a}bensk\'{y}, J. Weigel, and R. Machotka, ''On GPS
+        heighting in local networks,'' \emph{Acta Geodyn. Geomater.}, Vol.
+        3, No. 143, pp. 39-43,Jun. 2006.
+
+    \bibitem{Son}
+        Y. B. Son, and S. Y. Oh, ``A barometer-IMU fusion method
+        for vertical velocity and height estimation,'' \emph{IEEE Proc. of
+        Sensors}, pp. 1-4, Busan, Korea, 2015.
+
+    \bibitem{Sabatini}
+        A. M. Sabatini and V. Genovese, ``A sensor fusion method
+        for tracking vertical velocity and height based on inertial
+        and barometric altimeter measurements,'' \emph{Sensors}, Vol. 14,
+        No. 8, pp. 13324-13347, 2014.
+
+    \bibitem{Pierleoni}
+        P. Pierleoni, A. Belli, L. Palma, L. Pernini, and S. Valenti,
+        ``An accurate device for real-time altitude estimaion using
+        data fusion algorithms,'' \emph{Proc. of 2014 IEEE/ASME 10th
+        Int'l Conf. on MESA.}, pp.1-5, Senigallia, Italy, 2014.
+
+    \bibitem{Tanigawa}
+        M. Tanigawa, H. Luinge, L. Schipper, P. Slycke, ``Drift-free
+        dynamic height sensor using MEMS IMU aided by MEMS
+        pressure sensor,'' \emph{Proc. 5th Workshop on Positioning, Nav-
+        igation and Communication}, pp. 191-196, Hannover, Ger-
+        many, 2008.
+
+    \bibitem{Kim}
+        Y. Kim, Y. Hwang, S. Choi and J. Lee, ``Height estimation
+        scheme of low-cost pedestrian dead-reckoning system using
+        Kalman filter and walk condition estimation algorithm,''
+        \emph{Proc. of IEEE/ASME International Conf. on AIM.}, pp.1492-
+        1497, Wollongong, Australia, 2013.
+
+    \bibitem{Bianchi}
+        F. Bianchi, S. J. Redmond, M. R. Narayanan, S. Cerutti, and
+        N. H. Lovell, ``Barometric pressure and triaxial acceler-
+        ometry-based falls event detection,'' \emph{IEEE Trans. Neural
+        Sys. Rehab. Eng.}, Vol. 18, No. 6, pp. 619-627, 2010.
+
+    \bibitem{Lee}
+         J. K. Lee, E. J. Park, and S. N. Robinovitch, ``Estimation of
+        attitude and external acceleration using inertial sensor mea-
+        surement during various dynamic conditions'' \emph{IEEE Trans.
+        Instrum. Meas.}, Vol. 61, No. 8, pp. 2262-2273, 2012.
+
+    \bibitem{Walter}
+         T. Walter, and J. R, Higgins, ``A comparison of comple-
+        mentary and Kalman filtering,'' \emph{IEEE Trans. Aerosp. Elec-
+        tron. Syst.}, Vol. AES-11, No. 3, pp. 321-325, 1975.
+
+    \bibitem{Sabatini}
+         A. M. Sabatini and V. Genovese, ``A stochastic approach to
+        noise modeling for barometric altimeters,'' \emph{Sensors}, Vol. 13,
+        No. 11, pp. 15692-15707, 2013.
+
+    \bibitem{Degen}
+         T. Degen, H. Jaeckel, M. Rufer, and S. Wyss, ``SPEEDY: a
+        fall detector in a wrist watch'' in \emph{Proc. 7th IEEE Int. Sym-
+        posium on Wearable Computing}, pp. 184-187, 2003.
+
+    \end{thebibliography}
 
 
 \end{document}
