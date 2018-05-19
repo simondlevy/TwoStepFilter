@@ -172,9 +172,9 @@ the time-varying error term of the acceleration model, respectively.
 
 The first filter estimates the tilt attitude expressed by
 $\prescript{S}{}{\bm{Z}}$ as a state vector, and obtains the vertical
-acceleration through the estimation. Where $\prescript{S}{}{\bm{Z}}$ is a
-representation of the Z-axis unit vector of the inertial coordinate system I in
-the sensor coordinate system and is part of a direction cosine matrix which is
+acceleration through the estimation. Here $\prescript{S}{}{\bm{Z}}$ is a
+representation of the $Z$-axis unit vector of the inertial coordinate system (I) in
+the sensor coordinate system.  It is part of a direction cosine matrix which is
 a three-dimensional attitude matrix. First, the process model that updates the
 state variable $x_1 (= \prescript{S}{}{\bm{Z}})$ over time is expressed as
 follows from the strapdown integration associated with the angular velocity
@@ -189,7 +189,8 @@ measurement of the gyroscope:
 
 
 \[\bm{x}_{1,t}=\prescript{S}{}{\bm{Z}_t}=
-(\bm{I}-\Delta t\bm{\tilde{s}}_{G,t-1})\prescript{S}{}{\bm{Z}_{t-1}}+\Delta t(-\prescript{\tilde{S}}{}{\bm{Z}_{t-1}})\bm{n}_G\tag{3}\]
+(\bm{I}-\Delta t\bm{\tilde{s}}_{G,t-1})\prescript{S}{}{\bm{Z}_{t-1}}+
+\Delta t(-\prescript{S}{}{\bm{\tilde{Z}}_{t-1}})\bm{n}_G\tag{3}\]
 
 Here, $\Delta t$ is the sampling interval and the tilde ($\tilde{~}$) denotes the outer matrix of
 the vector, e.g., $\tilde{a} = [a \times]$.
@@ -199,12 +200,12 @@ The measurement model is a mixture of accelerometer signal and sensor accelerati
 \[\bm{s}_{A,t}-c_a\prescript{S}{}{\bm{a}^+_{t-1}}=g\prescript{S}{}{\bm{Z_t}}\prescript{S}{}{\bm{a}^-_{\varepsilon,t}}+\bm{n}_A\tag{4}\]
 
 
-The following relation is applied in the above equation: 
+The following relations hold in the above equation: 
 $\prescript{S}{}{\bm{g}} = g\prescript{S}{}{\bm{Z}}$, 
 $\prescript{S}{}{\bm{a}^-_{\varepsilon,t}} = \prescript{S}{}{\bm{a}^-_t} - \prescript{S}{}{\bm{a}_t}$, 
 The superscripts $-$ and + mean the prior and the posterior, respectively.
 
-From the equations (3) and (4) we obtain the following KF equation:
+From equations (3) and (4) we obtain the following KF equation:
 
 \[\bm{x}_{1,t} = \bm{\Phi}_{t-1}\bm{x}_{1,t-1} + \bm{w}_{t-1}\tag{5.a}\]
 
@@ -217,10 +218,10 @@ From the equations (3) and (4) we obtain the following KF equation:
 the measurement vector $\bm{z}_t$ is $\bm{s}_{A, t} - c_a \prescript{S}{}{\bm{a}}^+_{t-1}$;
 The observation matrix $\bm{H}_t$ is $g\bm{I$}; and the measurement noise $\bm{v}_t$ is 
 $-\prescript{S}{}{\bm{a}}_{\varepsilon,t} + \bm{n}_A$. The covariance matrix, 
-$\bm{Q}_{t-1}$ (= $E [\bm{w}_{t-1} - \bm{w}^T{t-1}]$) and $\bm{M}_t$ (= $E [\bm{v}_t \bm{v}^T_t]$) 
-for the progressive noise and the measured noise are as follows:
+$\bm{Q}_{t-1}$ (= $E [\bm{w}_{t-1} - \bm{w}^T_{t-1}]$) and $\bm{M}_t$ (= $E [\bm{v}_t \bm{v}^T_t]$) 
+for the process noise and the measurement noise are as follows:
 
-\[\bm{Q}_{t-1} = \Delta t^{2}\prescript{S}{}{\tilde{\bm{Z}}_{t-1}\Sigma_G}\prescript{S}{}{\tilde{\bm{Z}}_{t-1}}\tag{6.a}\]
+\[\bm{Q}_{t-1} = -\Delta t^{2}\prescript{S}{}{\tilde{\bm{Z}}_{t-1}\Sigma_G}\prescript{S}{}{\tilde{\bm{Z}}_{t-1}}\tag{6.a}\]
 
 \[\bm{M}_t = \Sigma_{acc} + \Sigma_A\tag{6.b}\]
 
@@ -247,13 +248,13 @@ $h_z (= \prescript{I}{}{h}_z)$ and the vertical velocity $v_z (= \prescript{I}{}
 are estimated using the vertical acceleration transmitted through the first Kalman filter and the barometric
 signal.
 
-The barometer pressure P can be converted to the vertical displacement h z by
+The barometer pressure $P$ can be converted to the vertical displacement $h_z$ by
 the following equation [12].
 
 \[h_z = 44330(1-(P/P_0)^{0.19})-h_{init}\tag{8}\]
 
 \noindent where the unit of $h_z$ is m(eters) and $P_0$ is the atmospheric pressure at sea level
-101,352 Pa(scals), and $h_{init}$ is the altitude of the starting point of
+= 101,352 Pa(scals), and $h_{init}$ is the altitude of the starting point of
 observation. In other words, $h_z$ in this paper is the variation of the vertical
 displacement from the observation starting point.  Also, in this paper, based
 on the highly transformed barometric pressure signal, the signal of the
@@ -261,11 +262,11 @@ barometer ($B$) is modeled as
 
 \[s_B = h_z + n_B\tag{9}\]
 
-The state vector $\bm{x}_2$ in the second filter, complementary filter, is [11]:
+The state vector $\bm{x}_2$ in the second (complementary) filter is [11]:
 
 \[\bm{x}_2 = [h_z v_z]^T\tag{10}\]
 
-Applying the introduced complementary filter is as follows:
+The complementary filter is applied as follows:
 
 \begin{equation}
 \resizebox{.42 \textwidth}{!} 
@@ -284,20 +285,21 @@ Here, $\varepsilon_h$ is the difference between the barometric signal and the es
 
 \[\varepsilon_{h,t-1} = s_{B,t-1} - h_{z,t-1}\tag{12}\]
 
-And the velocity increment $\Delta v_z$ is $\Delta t \times a_Z$. In addition, the complementary filter gain (gain)
+\noindent
+and the velocity increment $\Delta v_z$ is $\Delta t \times a_Z$. In addition, the complementary filter gain 
 $\bm{K}_c$ is as follows:
 
 \[\bm{K}_c = \begin{bmatrix}  \sqrt{2 (\sigma_{acc}/\sigma_B)} \\ \sigma_{acc}/\sigma_B \end{bmatrix} \tag{13}\]
 
 \noindent where $\sigma_{acc}$ and $\sigma_B$ are the vertical acceleration estimate and the barometric signal,
-respectively.   For references, this complementary filter has low-pass filter
+respectively.   For reference, this complementary filter has low-pass filter
 characteristics of time constant $\tau = \sqrt{\sigma_B/\sigma_{acc}}$.
 
 
 Prior to the above, the zero-velocity update (ZUPT) was applied.  Based
 on the integration of noise, this is a technique to limit the drift error. When the
-zero speed is detected (as follows), the speed is set to zero in preference to
-the complementary filter integral (11):
+zero speed is detected (as follows), the speed is set to zero instead of being set to
+the complementary filter integral from Eq. (11):
 
 \[v_{z,t} = \begin{cases} 0, if (|a_{z,\tau}|<0.1m/s^2 \forall_\tau\in[t-n\Delta t, t]) \\ Eq. (11)~otherwise \end{cases} \tag{14}\]
 
