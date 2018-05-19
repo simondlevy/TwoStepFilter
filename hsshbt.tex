@@ -45,7 +45,7 @@ the GPS is not suitable for the vertical position estimation. This paper
 investigates an IMU-barometer integration for estimation of vertical
 position (as well as vertical velocity). In particular, a new two-step
 Kalman/complementary filter is proposed for accurate and efficient
-estimation using 6-axis IMU and barometer signals. The two-step filter is
+estimation using six-axis IMU and barometer signals. The two-step filter is
 composed of (i) a Kalman filter that estimates vertical acceleration via
 tilt orientation of the sensor using the IMU signals and (ii) a
 complementary filter that estimates vertical position using the barometer
@@ -70,88 +70,88 @@ Vertical position, Vertical acceleration, Kalman filter, Complementary filter, I
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
-\IEEEPARstart{A}{ccurate} vertical position estimation for moving objects or humans is required
-in various fields. For example, in the control of an unmanned aerial vehicle
-(UAV) such as a drone, altitude is considered to be a kind of vertical
-displacement [1], and vertical displacement such as a skier or snowboard is
-required. In the case of severe spots, the vertical displacement estimation
-using a portable sensor system can be used for analysis to improve light power
-[2]. In order to overcome the space limitations of most motion capture systems
-in tracking trajectories of moving objects GPS (global positioning system) IMU
-(inertial measurement unit,  Inertial measurement device) has been attempted.
-At this time, GPS provides displacement values that do not drift,
-and inertial sensors provide high sampling rates, so that high sampling rate
-and high accuracy displacement estimation are achieved through fusion of the
-two sensors. However, the error of vertical direction displacement of GPS is
-about 10 -- 20m, which is much lower than that of horizontal displacement [3]. 
+\IEEEPARstart{A}{ccurate} vertical position estimation for moving objects or
+humans is required in various fields. For example, in the control of an
+unmanned aerial vehicle (UAV) such as a drone, altitude may be considered as a
+kind of vertical displacement [1].  In the sports such as skiing or
+snowboarding where the vertical displacement is severe, vertical displacement
+estimation using a portable sensor system can be anaylzed to improve
+performance [2].
 
-As a countermeasure to this, a barometer can be utilized for vertical
-displacement. However, the barometer is very noisy for use alone. Above all,
-the barometer estimates the vertical displacement through the sensing of the
+In order to overcome the limitations of most motion-capture systems in
+tracking trajectories of moving objects, fusion of GPS (Global Positioning
+System) and IMU (Inertial Measurement Unit) has been attempted.  At this time,
+GPS provides displacement values that do not drift, and inertial sensors
+provide high sampling rates, so that high sampling rate and high accuracy
+displacement estimation are achieved through fusion of the two sensors.
+However, the error of vertical direction displacement of GPS is about 10 --
+20m, which is much lower than that of horizontal displacement [3]. 
+
+As an alternative to this, a barometer can be utilized for vertical
+displacement. However, a barometer is very noisy when used alone, because
+it estimates vertical displacement through the sensing of the
 atmospheric pressure change. It responds sensitively to atmospheric conditions,
 indoor / outdoor conditions, and even the degree of window opening, all of
 which cause errors in the calculation of vertical displacement. Thus, similar
 to IMU-GPS fusion, barometric-IMU convergence has been studied for
 high-sampling rate and high-accuracy vertical displacement estimation [2,4-7].
-In particular, IMU-barometer convergence is used in pedestrian navigation [8]
-and fall detection [9] in terms of human monitoring.
+In particular, IMU-barometer fusion is used in pedestrian navigation [8]
+and fall detection [9], two varieties of human monitoring.
 
-Two approaches to the IMU and barometric convergence can be considered: tightly
-coupled and loosely coupled [5]. The strong coupling method is effective in
+Two approaches to IMU / barometer fusion can be considered: tightly
+coupled and loosely coupled [5]. The tightly-coupled method is effective in
 modeling the noise of the two signals in a way that the signals of the IMU and
 the barometer are fused from the beginning of the filter, but the system matrix
-is ​​large and the calculation amount is large. On the other hand,
-the weak coupling method uses a two-step filter and is used more frequently
-because of convenience of application and efficiency of calculation. In this
-case, the two-stage filter computes the vertical displacement using (i) the
-first filter to calculate the attitude of the sensor using the IMU signal and
-obtain the vertical acceleration through it, and (ii) the vertical acceleration
-calculated from the barometer signal and the previous filter The second filter. 
+is large, as is the amount of computation required.  The loosely-coupled method
+employs a two-step filter and is used more frequently because of convenience
+of application and efficiency of computation. In this approach, the two-stage
+filter computes the vertical displacement using (i) the first filter to
+calculate the attitude of the sensor using the IMU signal and obtain the
+vertical acceleration through it, and (ii) the second filter to fuse the the
+vertical acceleration calculated from the barometer signal with the output of
+the previous filter.
 
-
-Zihajehzadeh et al. [2] proposed a Kalman filter (KF) [10], which uses a 6-axis
-IMU developed by this author (ie, a 3-axis accelerometer and a 3-axis
-gyroscope) , And the Kalman filter, which sets the vertical displacement and
+Zihajehzadeh et al. [2] proposed a Kalman filter (KF) [10], which uses a six-axis
+IMU developed by the authors (i.e., a three-axis accelerometer and a three-axis
+gyroscope). Another Kalman filter, which sets the vertical displacement and
 the vertical velocity as state variables, was used as the second filter.
 Tanigawa et al. [7] applied the same Kalman filter as the first filter to the
-Xsens three-dimensional posture calculation based on the 9-axis IMU (ie 6-axis
-IMU + 3-axis geomagnetic sensor) All. Meanwhile, Sabatini and Genovese [5]
-proposed an extended Kalman filter (Extended KF, EFK) that obtains quaternions
-using 6-axis IMU As a first filter, use a complementary filter (CF) The second
-filter was used. In addition, Son and Oh proposed [4] The EKF has claimed that
-the IMU can be calibrated during the measurement by adding the accelerometer
-bias and scale factor in addition to the vertical displacement and vertical
-velocity as state variables, thereby improving the accuracy of posture and
-vertical displacement estimation.
+Xsens three-dimensional posture calculation based on a nine-axis IMU (i.e., six-axis
+IMU + three-axis geomagnetic sensor). Sabatini and Genovese [5]
+proposed an Extended Kalman Filter (EFK) that obtains quaternions
+using a six-axis IMU for the first filter and a complementary filter (CF) as the second
+filter. In the EKF proposed by Son and Oh [4], the IMU can be calibrated during
+measurement by adding the accelerometer bias and scale factor in addition
+to the vertical displacement and vertical velocity as state variables, thereby
+improving the accuracy of posture and vertical displacement estimation.
 
-Among the above methods, all methods except [5] use a Kalman filter as the second filter,
-for smoothing and smoothing effects.  However, the Kalman filter has a
-disadvantage that the calculation amount is larger than that of the
-complementary filter.
+Among the above methods, all except [5] use a Kalman filter as the second filter,
+to exploit the Kalamn Filter's optimization and smoothing effects.  However,
+the Kalman filter has a disadvantage that the computation required is larger than
+that of the complementary filter.
 
-In this paper, the accurate vertical acceleration is estimated by using the
-tilt estimation Kalman filter [10] adopted in [2] as the first filter, and a
-new combination IMU - Barometer based
-
-A two-stage Kalman / complementary filter is proposed. In addition, (1) the
-effect of the accuracy of vertical acceleration estimation on the accuracy of
-vertical displacement estimation in (1), and (2) the comparison between short
-and long endpoints and estimation accuracy based on the complementary filter
-and Kalman filter selection in the second stage. In this paper, we propose an
-optimal vertical displacement estimation filter that combines the accuracy of
-estimation and calculation efficiency.
-
+In this paper, a two-stage Kalman / complementary filter is proposed.  Accurate
+vertical acceleration is estimated by using the tilt-estimation Kalman filter
+[10] adopted in [2] as the first filter. For the second filter, we propose a new
+combination IMU-barometric-based Kalman / complementary filter using the
+highly efficient complementary filter introduced in [11].  In addition, we
+examine (1) the effect of the accuracy of vertical-acceleration estimation on
+the accuracy of vertical-displacement estimation, and (2) the comparison
+between short and long endpoints and estimation accuracy based on the selection of
+complementary filter and Kalman filter in the second stage. In sum,
+we propose an optimal vertical displacement estimation filter that combines 
+accuracy of estimation with computaional efficiency.
 
 \section{Estimation algorithm and verification experiment}
 
 \subsection{Kalman filter for vertical acceleration estimation via posture estimation}
 
 The Kalman filter for vertical acceleration estimation, which is the first
-step, estimates the tilt as a vertical axis slope using an accelerometer and
-gyroscope signal, which is a 6-axis IMU [10], and compensates for the
+step, estimates the tilt as a vertical axis slope using the accelerometer and
+gyroscope signals frm a six-axis IMU [10], and compensates for the
 gravitational acceleration component in the accelerometer signal (See Fig. 1).
 
-The signals of the gyroscope (G) and the accelerometer (A) were modeled as
+The signals of the gyroscope (G) and the accelerometer (A) are modeled as
 follows:
 
 \[\bm{s}_G = \prescript{S}{}{\bm{\omega}}+\bm{n}_G\tag{1.a}\]
@@ -160,15 +160,15 @@ follows:
 
 
 \noindent where $\bm{\omega}$ is the angular velocity, $\bm{a}$ is the sensor
-acceleration and $\bm{n}$ is the measurement noise. The superscript $S$ also
+acceleration, and $\bm{n}$ is the measurement noise. The superscript $S$ 
 means that the vector is represented in the sensor coordinate system. In
 equation (1.b), the sensor acceleration is modeled as a first-order Markov
 chain process:
 
 \[\prescript{S}{}{\bm{a}_t} = c_a\prescript{S}{}{\bm{a}_{t-1}}+\bm{\varepsilon}_{a,t}\tag{2}\]
 
-\noindent where $c_a$ and $\bm{\varepsilon}_{a,t}$ are constant parameters and time-varying error terms of
-the acceleration model, respectively.
+\noindent where $c_a$ and $\bm{\varepsilon}_{a,t}$ are a constant parameter and
+the time-varying error term of the acceleration model, respectively.
 
 The first filter estimates the tilt attitude expressed by
 $\prescript{S}{}{\bm{Z}}$ as a state vector, and obtains the vertical
@@ -316,8 +316,8 @@ The overall configuration of the proposed two-stage Kalman / complementary filte
 \subsection{Verification experiment}
 
 A GY-87 modular system was used for verification experiments. The GY-87
-consists of a 6-axis InvenSense MPU-6050 IMU (including accelerometer and
-gyro), a 3-axis Honeywell HMC5883L geomagnetic sensor, and a Bosch BMP180
+consists of a six-axis InvenSense MPU-6050 IMU (including accelerometer and
+gyro), a three-axis Honeywell HMC5883L geomagnetic sensor, and a Bosch BMP180
 barometer, of which IMU and barometer were used for this experiment. Refer to
 Table 1 for details.  The setup of the GY-87 is shown in Fig. 2 with Arduino
 UNO R3 microcontroller (Arduino, Italy) and USB serial communication with the
@@ -431,7 +431,7 @@ cm was obtained.
 In this paper, a two-stage Kalman / complementary filter for vertical
 displacement estimation based on IMU-barometer was proposed. The Kalman filter
 (KF) for estimating the vertical acceleration in the first stage estimates the
-vertical acceleration via the tilt posture using the 6-axis IMU signal. In the
+vertical acceleration via the tilt posture using the six-axis IMU signal. In the
 second-stage complementary filter (CF), vertical displacement and vertical
 velocity are estimated using vertical acceleration and barometric signal
 transmitted through the first Kalman filter. The following conclusions are
