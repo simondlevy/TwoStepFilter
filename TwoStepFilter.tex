@@ -5,8 +5,8 @@
 \ifCLASSOPTIONcompsoc
 \usepackage[nocompress]{cite}
 \else
-  % normal IEEE
-  \usepackage{cite}
+% normal IEEE
+\usepackage{cite}
 \fi
 
 % correct bad hyphenation here
@@ -73,9 +73,9 @@ Vertical position, Vertical acceleration, Kalman filter, Complementary filter, I
 \IEEEPARstart{A}{ccurate} vertical position estimation for moving objects or
 humans is required in various fields. For example, in the control of an
 unmanned aerial vehicle (UAV) such as a drone, altitude may be considered as a
-kind of vertical displacement [1].  In the sports such as skiing or
+kind of vertical displacement [1].  In sports such as skiing or
 snowboarding where the vertical displacement is severe, vertical displacement
-estimation using a portable sensor system can be anaylzed to improve
+estimation using a portable sensor system can be analyzed to improve
 performance [2].
 
 In order to overcome the limitations of most motion-capture systems in
@@ -107,7 +107,7 @@ employs a two-step filter and is used more frequently because of convenience
 of application and efficiency of computation. In this approach, the two-stage
 filter computes the vertical displacement using (i) the first filter to
 calculate the attitude of the sensor using the IMU signal and obtain the
-vertical acceleration through it, and (ii) the second filter to fuse the the
+vertical acceleration through it, and (ii) the second filter to fuse the
 vertical acceleration calculated from the barometer signal with the output of
 the previous filter.
 
@@ -140,7 +140,7 @@ the accuracy of vertical-displacement estimation, and (2) the comparison
 between short and long endpoints and estimation accuracy based on the selection of
 complementary filter and Kalman filter in the second stage. In sum,
 we propose an optimal vertical displacement estimation filter that combines 
-accuracy of estimation with computaional efficiency.
+accuracy of estimation with computational efficiency.
 
 \section{Estimation algorithm and verification experiment}
 
@@ -148,7 +148,7 @@ accuracy of estimation with computaional efficiency.
 
 The Kalman filter for vertical acceleration estimation, which is the first
 step, estimates the tilt as a vertical axis slope using the accelerometer and
-gyroscope signals frm a six-axis IMU [10], and compensates for the
+gyroscope signals from a six-axis IMU [10], and compensates for the
 gravitational acceleration component in the accelerometer signal (See Fig. 1).
 
 The signals of the gyroscope (G) and the accelerometer (A) are modeled as
@@ -320,10 +320,10 @@ The overall configuration of the proposed two-stage Kalman / complementary filte
 A GY-87 modular system was used for verification experiments. The GY-87
 consists of a six-axis InvenSense MPU-6050 IMU (including accelerometer and
 gyro), a three-axis Honeywell HMC5883L geomagnetic sensor, and a Bosch BMP180
-barometer, of which IMU and barometer were used for this experiment. Refer to
-Table 1 for details.  The setup of the GY-87 is shown in Fig. 2 with Arduino
-UNO R3 microcontroller (Arduino, Italy) and USB serial communication with the
-PC and input to the filter.  The OptiTrack Flex13 optical motion capture system
+barometer, of which IMU and barometer were used for this experiment. (Refer to
+Table 1 for details.)  The setup of the GY-87 is shown in Fig. 2 with an Arduino
+Uno R3 microcontroller and USB serial communication with the
+PC.  The OptiTrack Flex13 optical motion capture system
 (NaturalPoint, Inc. USA) of Figure 3 was used as a ground-truth reference to obtain
 root mean square error (RMSE).  
 
@@ -334,8 +334,8 @@ the following cases were compared and analyzed:
 \item The method of obtaining vertical acceleration: 
 \begin{enumerate}
 \item $a_{z,KF}$: the proposed method described in Section 2.1 using both accelerometer and gyroscope,
-\item $a_{z,OPT}$: a method of obtaining vertical acceleration using a very accurate attitude obtained from the 
-  Flex 13 camera system instead of the inertial sensor,
+\item $a_{z,OPT}$: a method of obtaining vertical acceleration using the highly
+accurate posture obtained from the Flex 13 camera system instead of the inertial sensor,
 \item $a_{z,app}$: Approximate method using only accelerometer [13]. That is, $a_{z,app} = ||s_A|| - g$.
 \end{enumerate}
 \item How to find vertical displacement:
@@ -345,25 +345,24 @@ the following cases were compared and analyzed:
 \end{enumerate}
 \end{itemize}
 
-Five experiments were conducted as follows. Tests A to C are shown in Fig 3. As
-shown in Fig. 3, these were performed in the indoor gymnasium, elevated above the
+Five experiments were conducted as follows. As shown in Fig. 3., Tests A to C 
+were performed in the indoor gymnasium, elevated above the
 starting height by more than 3m. The optical marker was used only for the
 reference value corresponding to the vertical displacement (That is, $a_{z,OPT}$
-are not obtained through the reference value of the sensor attitude.) On the
-other hand, Test D ~ E was lowered to within 1.5 m from the starting height.
+was not obtained through the reference value of the sensor attitude.) 
+For tests D and E on the other hand, the apparatus was lowered to within 1.5 m from the starting height.
 To confirm the influence of $a_{z,KF}$ and $a_{z,OPT}$ on the vertical displacement
 estimation, three additional markers were attached.  The test movements were as follows:
 \begin{itemize}
     \item \textbf{Test A} Increased gradually from the starting height to around 3.5m.
          Waited for about 10 seconds before descending to the starting height again.
-         XXX However, when the sensor is moved up or down and the sensor attitude changes by more than 
-         45$^\circ$ XXX.  This experiment confirms the influence of vertical
-         acceleration $a_{z,KF}$ and $a_{z,app}$ difference in attitude change in
-         vertical displacement estimation.
+         During these upward and downward motions, the sensor was also tilted from side to side
+         by at least 45 degrees.  This experiment tested the influence of vertical
+         acceleration $a_{z,KF}$ and attitude change $a_{z,app}$ on the estimation of
+         vertical displacement.
     \item \textbf{Test B-C} Repeatedly ascending and descending by up to about 3m. Compared to Test B, 
         Test C had faster and more frequent ups and downs. This experiment
-        confirms the influence of the movement speed on the vertical displacement
-        estimation.
+        tested the influence of movement speed on vertical displacement estimation.
     \item \textbf{Test D} Cascaded steps up and down, then stop.
     \item \textbf{Test E} Observe the transition of the barometer signal at small altitude changes.
 \end{itemize}
@@ -386,64 +385,62 @@ estimation, three additional markers were attached.  The test movements were as 
 
 \section{Results}
 
-Table 2 shows the RMSE for each case, and Fig. 4 shows the result of applying CF in the second step.
+Table 2 shows the RMSE for each case, and Fig. 4 shows the result of applying
+the CF in the second step.
 
-(Test A - C results) In case of applying $a_{z,app}$ In the case of vertical
-motion in which the change of attitude was not large as in Test B or Test C,
+Test A - C results: effect of applying $a_{z,app}$. In cases of vertical
+motion in which the change of posture was not large (Test B or Test C),
 since $a_{z,app}$ maintains some accuracy, the vertical displacement estimate
 was also obtained more accurately than with the barometer by itself ($s_B$).
-However, as in Test A, when the sensor posture changed significantly and the
-vertical motion was performed, the estimation accuracy was estimated to be even
-larger than the RMSE of $s_B$. The maximum error was 26.2 cm in Test C, and
+However, in Test A, when the sensor posture changed significantly and
+vertical motion was performed, the estimation accuracy was even worse
+than the RMSE of $s_B$. The maximum error was 26.2 cm in Test C, and
 even less than 30 cm of accuracy was achieved in a displacement test of 3 m or
 more. In Test C, it seems that the influence of the large error of the
 barometer signal is reflected in the estimated value.
 
-(Test D - E) Overall accuracy was highest for $a_{z,OPT}$, which estimated
+Test D - E results: Overall accuracy was highest for $a_{z,OPT}$, which estimated
 vertical displacement based on very accurate vertical acceleration. However,
-the proposed $a_{z,KF}$ method also showed very high accuracy ($a_{z,OPT}$ is
-comparable to the analytical comparison, which can not be obtained with the
-IMU-barometer system), averaging 1.4 cm averaged over $a_{z,OPT}$ method.
-The $a_{z,app}$ method showed very different results depending on the degree of
-sensor posture maintained.  For example, as in Test D, the RMSE was less than 20
-cm in accuracy for a motion that included a stationary state with no change in
-posture.
+the proposed $a_{z,KF}$ method also showed very high accuracy,
+averaging 1.4 cm over $a_{z,OPT}$ method.  The $a_{z,app}$ method showed very
+different results depending on the degree of sensor posture maintained.  For
+example, in Test D, the RMSE was less than 20 cm for a motion
+that included a stationary state with no change in posture.
 
 The barometer signal functions to prevent drift errors and ultimately
-determines the direction of the estimated value. In other words, It is
-inevitable that the estimated value is also affected if the error increases to
-the abnormal barometer signal which depends on the barometer signal to prevent
-drift error.  For example, if you look at the portion after 35 seconds in Test
-E, the sensor stopped at the 0 m initial position, but the barometer signal
-continued to drop, and you can see how the estimated value tracks it. Therefore, in
-order to improve the estimation performance, it is necessary to improve the
-performance of the barometer itself.
+determines the direction of the estimated value. In other words, it is
+inevitable that the estimated value is also affected if the error increases because
+of an abnormal barometer signal.  For example, looking at the portion after
+35 seconds in Test E, the sensor stopped at the 0 m initial position, but the
+barometer signal continued to drop, and you can see how the estimated value
+tracks it.  Therefore, in order to improve estimation performance, it is
+necessary to improve the performance of the barometer itself.
 
 In conclusion, there was no performance difference between CF and KF in all
 five tests.  However, considering the amount of calculation (CF / KF
 calculation ratio = 12.5\%), it can be concluded that CF is advantageous
 overall. The proposed method has an average RMSE of 19.7 cm, which is 55\%
-better than the RMSE 43.4 cm of the barometer signal itself.  In [2], vertical
-acceleration estimation with Kalman filter and vertical displacement estimation
-with Kalman filter (ie, two-stage Kalman / Kalman filter) and average RMSE 27.4
-cm was obtained.
+better than the RMSE 43.4 cm of the barometer signal by itself.  In [2], which
+estimated vertical acceleration with a Kalman filter and vertical displacement
+with a Kalman filter (i.e., a two-stage Kalman / Kalman filter), an average RMSE
+27.4 cm was obtained.
 
-\section{Review and Conclusion}
+\section{Review and Discussion}
 
 In this paper, a two-stage Kalman / complementary filter for vertical
-displacement estimation based on IMU-barometer was proposed. The Kalman filter
-(KF) for estimating the vertical acceleration in the first stage estimates the
-vertical acceleration via the tilt posture using the six-axis IMU signal. In the
-second-stage complementary filter (CF), vertical displacement and vertical
-velocity are estimated using vertical acceleration and barometric signal
+displacement estimation based on IMU-barometer fusion was proposed. The first
+stage uses a Kalman filter (KF) to estimate vertical acceleration
+via the tilt posture of a six-axis IMU signal. The second stage
+uses a complementary filter (CF) to estimate vertical displacement and vertical
+velocity using vertical acceleration and a barometric signal
 transmitted through the first Kalman filter. The following conclusions are
 drawn from various experiments.
 
 1. In the vertical displacement estimation filter using the vertical
 acceleration estimate and the barometric signal, there was almost no difference
 in accuracy between KF and CF (absolute difference value average 0.15 cm).
-However, considering the calculation time, the CF method is much faster than KF
-(8 times), so we conclude that the CF adopted by this paper is better.
+However, considering the calculation time, the CF method is eight times faster than KF
+so we conclude that the CF adopted by this paper is better.
 
 2. Unless there is little change in attitude, approximated vertical
 acceleration estimation using only an accelerometer is inadequate for use in
@@ -456,15 +453,15 @@ estimation accuracy, and it seems that there is a limit to improving the accurac
 through the IMU.  However, in comparison with the barometer signal error of
 43.4cm average RMSE, the average RMSE error of the proposed method was 19.7cm.
 
-In this paper, we proposed a method to efficiently improve the accuracy of
-vertical displacement estimation through IMU-barometric fusion. It can be
-widely applied to sports science and ship VDR (voyage data recorder) as well as
+The method proposed in this paper -- efficiently improving the accuracy of
+vertical displacement estimation through IMU-barometric fusion -- can be
+widely applied to sports science and ship VDR (voyage data recording), as well as
 pedestrian navigation and fall detection.
 
 \section*{Acknowledgments}
 
 The work described in this paper was carried out with support from the Small
-and Medium Business Administration's research village project (C0301478) and
+and Medium Business Administration's Research Village project (C0301478) and
 the Korea Research Foundation (NRF-2015R1C1A1A02036373) of the Institute for
 Future Creation Sciences.
 
