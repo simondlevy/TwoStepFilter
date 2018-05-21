@@ -7,16 +7,16 @@ else
 endif
 
 
-all: hsshbt.pdf
+all: TwoStepFilter.pdf
 
-hsshbt.pdf: hsshbt.tex
-	pdflatex hsshbt.tex
+TwoStepFilter.pdf: TwoStepFilter.tex
+	pdflatex TwoStepFilter.tex
 
 edit:
-	vim hsshbt.tex
+	vim TwoStepFilter.tex
 
-open: hsshbt.pdf
-	$(VIEWER) hsshbt.pdf
+open: TwoStepFilter.pdf
+	$(VIEWER) TwoStepFilter.pdf
 
 clean:
-	rm -f hsshbt.log hsshbt.aux hsshbt.pdf
+	rm -f TwoStepFilter.log TwoStepFilter.aux TwoStepFilter.pdf
